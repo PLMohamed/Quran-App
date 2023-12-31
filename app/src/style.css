@@ -1,0 +1,56 @@
+@import url('https://fonts.googleapis.com/css2?family=Amiri+Quran&family=Inter:wght@400&display=swap');
+
+*{
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+}
+
+body{
+    display: flex;
+    justify-content: center;
+    background-color: #d4d797;
+    font-size: 20px;
+    padding: 10px;
+    font-family: 'Amiri Quran';
+}
+
+ul {
+    display: grid;
+    grid-template-columns: repeat(7,1fr);
+    gap: 40px;
+    text-align: right;
+    direction: rtl; /* Reverse the order */
+
+    counter-reset: number;
+}
+ul li{
+    display: flex;
+    align-items: center;
+    gap: 2px;
+    cursor: pointer;
+}
+ul li::before {
+    position: relative;
+    content:counter(number) "-";
+    counter-increment: number;
+}
+
+@media (max-width:1200px) {
+    ul {
+        grid-template-columns: repeat(6,1fr);
+    }
+}
+
+@media (max-width:1060px) {
+    ul {
+        grid-template-columns: repeat(5,1fr);
+    }
+}
+
+@media (max-width:900px) {
+    ul {
+        grid-template-columns: repeat(4,1fr);
+    }
+
+}
