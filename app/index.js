@@ -17,19 +17,28 @@ const createWindow = () => {
         height:600,
         minWidth:700,
         minHeight:500,
+        show:false,
         webPreferences: {
             preload : path.join(__dirname,'preload.js'),
-            nodeIntegration: false,
-            contextIsolation: true,
+            nodeIntegration:false,
+            sandbox:false,
+            contextIsolation:true
         }
     });
 
-    mainWindow.loadFile(path.join(__dirname,'src/index.html'));
+    mainWindow.loadURL('http://localhost:1000');
+    mainWindow.once('ready-to-show',() => {
+        setTimeout(() => {
+            mainWindow.reload();
+            mainWindow.show();
+            mainWindow.maximize();
+            mainWindow.focus();
 
-    mainWindow.on('ready-to-show',mainWindow.show)
-
-    mainWindow.maximize();
-
+        }, 400);
+    })
+    
+    
+    
 }
 
 app.on('ready',createWindow);

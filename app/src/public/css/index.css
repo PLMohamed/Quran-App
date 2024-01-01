@@ -1,39 +1,29 @@
-@import url('https://fonts.googleapis.com/css2?family=Amiri+Quran&family=Inter:wght@400&display=swap');
-
-*{
-    margin: 0;
-    padding: 0;
-    list-style-type: none;
-}
-
 body{
     display: flex;
-    justify-content: center;
-    background-color: #d4d797;
-    font-size: 20px;
-    padding: 10px;
-    font-family: 'Amiri Quran';
+    flex-direction: column;
+    align-items: center;
 }
-
 ul {
     display: grid;
     grid-template-columns: repeat(7,1fr);
     gap: 40px;
     text-align: right;
     direction: rtl; /* Reverse the order */
-
     counter-reset: number;
 }
-ul li{
+ul li a{
     display: flex;
     align-items: center;
     gap: 2px;
     cursor: pointer;
+    color: black;
+    counter-set: number var(--id);
 }
-ul li::before {
+
+ul li a::before {
     position: relative;
     content:counter(number) "-";
-    counter-increment: number;
+    color: black;
 }
 
 @media (max-width:1200px) {
