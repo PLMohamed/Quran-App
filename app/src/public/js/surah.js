@@ -5,21 +5,25 @@ document.addEventListener('DOMContentLoaded',async () => {
     const surahTitle = document.getElementById('surahTitle');
     const surahContainer = document.querySelector('.container');
     const bsm = document.getElementById('bsm'); 
-    const response = await fetch(`http://api.alquran.cloud/v1/surah/${surahID}`,{
-        "method":"GET"
-    });
+
     try {
+        const response = await fetch(`http://api.alquran.cloud/v1/surah/${surahID}`,{
+        "method":"GET"
+        });
+
         const result = await response.json();
         if(result.status !== "OK")
             throw new Error(`Error ${result.code}`);
         
         display(result);
-        setMultipleCookies(JSON.stringify(result),result.data.englishName)
+        localStorage.setItem(surahID,JSON.stringify(result));
 
         
     } catch (err) {
         console.error(err);
-
+        const result = JSON.parse(localStorage.getItem(surahID));
+        display(result);
+        
     }
 
     function display(result) {
